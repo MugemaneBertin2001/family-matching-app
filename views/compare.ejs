@@ -1,0 +1,150 @@
+<!-- views/compare.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Approaches</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Family Matching Demo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/compare">Compare Approaches</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h2>Comparing Family Matching Approaches</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">
+                            This page compares the two main approaches for implementing family matching logic in our
+                            application.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <% approaches.forEach(approach=> { %>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h3>
+                                        <%= approach.name %>
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text-success">Pros:</h5>
+                                    <ul>
+                                        <% approach.pros.forEach(pro=> { %>
+                                            <li>
+                                                <%= pro %>
+                                            </li>
+                                            <% }); %>
+                                    </ul>
+
+                                    <h5 class="text-danger">Cons:</h5>
+                                    <ul>
+                                        <% approach.cons.forEach(con=> { %>
+                                            <li>
+                                                <%= con %>
+                                            </li>
+                                            <% }); %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h3>Hybrid Approach Recommendation</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Based on our analysis, we recommend starting with the rule-based approach and gradually
+                            incorporating ML capabilities:
+                        </p>
+                        <ol>
+                            <li>
+                                <strong>Start with rule-based matching:</strong> Implement and refine the basic string
+                                similarity and logical rules as demonstrated in this application.
+                            </li>
+                            <li>
+                                <strong>Collect user feedback:</strong> As users interact with the system, collect data
+                                on which matches are confirmed or rejected.
+                            </li>
+                            <li>
+                                <strong>Incremental ML integration:</strong> Use the collected data to train a simple
+                                TensorFlow.js model that can enhance the rule-based predictions.
+                            </li>
+                            <li>
+                                <strong>Hybrid scoring:</strong> Combine scores from both approaches to provide more
+                                accurate family relationship predictions.
+                            </li>
+                            <li>
+                                <strong>Continuous improvement:</strong> Retrain the ML model periodically with new data
+                                to improve its accuracy over time.
+                            </li>
+                        </ol>
+
+                        <div class="alert alert-warning mt-3">
+                            <strong>Implementation Note:</strong> The ML approach would require additional work to:
+                            <ul>
+                                <li>Define appropriate features for the model</li>
+                                <li>Create a training dataset</li>
+                                <li>Build and train the TensorFlow.js model</li>
+                                <li>Deploy the model in a Node.js environment</li>
+                                <li>Implement a scoring mechanism that combines rule-based and ML-based results</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-success text-white">
+                        <h3>Next Steps</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>To move forward with the hybrid approach, we recommend:</p>
+                        <ol>
+                            <li>Refine the rule-based system based on initial user testing</li>
+                            <li>Implement a feedback mechanism for users to confirm or reject suggested matches</li>
+                            <li>Create a basic ML model using TensorFlow.js to enhance predictions</li>
+                            <li>Develop a scoring system that combines both approaches</li>
+                            <li>Implement A/B testing to compare the performance of both approaches</li>
+                        </ol>
+
+                        <a href="/" class="btn btn-primary mt-3">Back to Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
